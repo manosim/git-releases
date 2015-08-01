@@ -67,10 +67,31 @@
   text-align: center;
 
   .logo {
-    font-size: 45px;
     color: @White;
-    text-shadow: 5px 5px darken(@ThemePrimary, 20%);;
+    text-shadow: 5px 5px darken(@ThemePrimary, 20%);
     margin: 20px 0;
+  }
+
+  .desc {
+    color: @White;
+  }
+
+  .search-form {
+    padding: 20px 0 10px;
+
+    .input-lg {
+      margin: 10px 0;
+    }
+
+    .btn-default {
+      background-color: @ThemeAlt;
+      border: 0;
+      margin: 10px 0;
+
+      &:hover {
+        background-color: darken(@ThemeAlt, 10%);
+      }
+    }
   }
 }
 
