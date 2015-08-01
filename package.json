@@ -32,6 +32,7 @@
     "bootstrap": "=3.3.5",
     "font-awesome": "=4.4.0",
     "react": "=0.13.3",
+    "reflux": "=0.2.11",
     "reloading": "0.0.6",
     "superagent": "=1.2.0",
     "underscore": "=1.8.3"
