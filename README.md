@@ -1,2 +1,2 @@
-# git-releases
-A nice way to view repositories GitHub Releases. 
+# Git Releases
+A nice way to view repositories GitHub Releases.

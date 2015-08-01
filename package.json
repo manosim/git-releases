@@ -4,6 +4,12 @@
   "description": "A nice way to view repositories GitHub Releases.",
   "main": "index.js",
   "scripts": {
+    "build-js": "mkdir -p build/js && browserify -t babelify src/js/app.js -o build/js/app.js",
+    "build": "ulimit -n 512 && npm install && grunt build && npm run build-js",
+    "watch-js": "watchify -t babelify src/js/app.js -o build/js/app.js -v",
+    "watch": "npm run build && grunt build && npm run watch-js & grunt watch",
+
+    "start": "npm run build && http-server . -o -c-1 & npm run watch-js & npm run watch-less",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
