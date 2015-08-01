@@ -9,7 +9,7 @@
     "watch-js": "watchify -t babelify src/js/app.js -o build/js/app.js -v",
     "watch": "npm run build && npm run watch-js & grunt watch",
     "start": "npm run build && http-server . -o -c-1 & npm run watch-js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jsxhint --reporter=node_modules/jshint-stylish 'src/**/*.js', 'index.js' --exclude 'Gruntfile.js' && jscs 'src/js/'"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
   "devDependencies": {
     "babelify": "=6.1.3",
     "browserify": "=11.0.1",
+    "esprima-fb": "^15001.1001.0-dev-harmony-fb",
     "grunt": "=0.4.5",
     "grunt-contrib-clean": "=0.6.0",
     "grunt-contrib-copy": "=0.8.0",
