@@ -1,10 +1,12 @@
 var React = require('react');
+var SearchForm = require('./components/search-form');
 
 var App = React.createClass({
   render: function () {
     return (
-      <div>
-        <h3>Hello World!</h3>
+      <div className='container-fluid jumbotron header'>
+        <a className='logo'>Git Releases</a>
+        <SearchForm />
       </div>
     );
   }

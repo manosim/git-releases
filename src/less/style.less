@@ -16,6 +16,26 @@
 /* @end Colors */
 
 
+/* @group Bootstrap Variables */
+
+// Typography
+@font-family-sans-serif: 'Open Sans', sans-serif;
+
+// Misc
+@border-radius-base: 0;
+@border-radius-large: 0;
+@border-radius-small: 0;
+
+// Jumbotron
+@jumbotron-bg: @ThemePrimary;
+@jumbotron-color: @White;
+
+// Buttons
+@btn-default-bg: @ThemeAlt;
+
+/* @end Bootstrap Variables */
+
+
 /* @group Typography */
 
 .FontOpenSansLight() {
@@ -39,3 +59,19 @@
 }
 
 /* @end Typography */
+
+
+/* @group Header */
+
+.header {
+  text-align: center;
+
+  .logo {
+    font-size: 45px;
+    color: @White;
+    text-shadow: 5px 5px darken(@ThemePrimary, 20%);;
+    margin: 20px 0;
+  }
+}
+
+/* @end Header */
