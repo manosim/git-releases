@@ -87,6 +87,7 @@
       background-color: @ThemeAlt;
       border: 0;
       margin: 10px 0;
+      color: @White;
 
       &:hover {
         background-color: darken(@ThemeAlt, 10%);
@@ -96,3 +97,27 @@
 }
 
 /* @end Header */
+
+
+/* @group Release */
+
+.release {
+
+  .page-header {
+    .fa-external-link {
+      font-size: 0.5em;
+      margin-left: 10px;
+    }
+
+    .downloads {
+      float: right;
+
+      .fa {
+        color: @ThemeAlt;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+/* @end Release */

@@ -2,9 +2,10 @@ var React = require('react');
 var Reflux = require('reflux');
 var Actions = require('../actions/actions');
 var RepositoryStore = require('../stores/repository');
+var Release = require('../components/release.js');
 var _ = require('underscore');
 
-var SearchForm = React.createClass({
+var Results = React.createClass({
   mixins: [
     Reflux.connect(RepositoryStore, 'releases')
   ],
@@ -21,7 +22,7 @@ var SearchForm = React.createClass({
     if (this.state.releases) {
       releases = (
         _.map(this.state.releases, function (obj) {
-          return <div>{obj.name}</div>;
+          return <Release details={obj} key={obj.id} />;
         })
       );
     }
@@ -34,4 +35,4 @@ var SearchForm = React.createClass({
   }
 });
 
-module.exports = SearchForm;
+module.exports = Results;
