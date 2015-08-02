@@ -9,7 +9,7 @@
     "watch-js": "watchify -t babelify src/js/app.js -o build/js/app.js -v",
     "watch": "npm run watch-js & grunt watch",
     "dist": "npm run build && grunt dist",
-    "start": "npm run build && http-server . -o -c-1 & npm run watch",
+    "start": "npm run build && http-server . -o -c-1 --silent & npm run watch",
     "test": "jsxhint --reporter=node_modules/jshint-stylish 'src/**/*.js', 'index.js' --exclude 'Gruntfile.js' && jscs 'src/js/'"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "bootstrap": "=3.3.5",
     "font-awesome": "=4.4.0",
     "react": "=0.13.3",
+    "react-bootstrap": "=0.24.3",
     "reflux": "=0.2.11",
     "reloading": "0.0.6",
     "superagent": "=1.2.0",
