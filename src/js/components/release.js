@@ -2,7 +2,8 @@ var React = require('react');
 var Reflux = require('reflux');
 var Actions = require('../actions/actions');
 var RepositoryStore = require('../stores/repository');
-var Release = require('../components/release.js');
+var Release = require('../components/release');
+var Asset = require('../components/asset');
 var _ = require('underscore');
 
 var Release = React.createClass({
@@ -25,23 +26,13 @@ var Release = React.createClass({
   },
 
   render: function () {
-    var count, assetSize;
+    var assets;
 
-    if (!_.isEmpty(this.props.details.assets)) {
-      var size = (parseInt(this.props.details.assets[0].size) / 1000000).toFixed(2);
-
-      count = (
-        <h3 className='downloads'>
-          {this.props.details.assets[0].download_count}
-          <i className='fa fa-download' />
-        </h3>
-      );
-
-      assetSize = (
-        <div>
-          <dt><span className='octicon octicon-file-zip'></span></dt>
-          <dd>{size} mb</dd>
-        </div>
+    if (this.props.details.assets) {
+      assets = (
+        _.map(this.props.details.assets, function (obj) {
+          return <Asset details={obj} key={obj.id} />;
+        })
       );
     }
 
@@ -51,9 +42,9 @@ var Release = React.createClass({
           <h3>
             <a href={this.props.details.html_url} target='_blank'>{this.props.details.name}</a>
           </h3>
-          {count}
         </div>
         <div className='row'>
+          {assets}
           <div className='col-md-8'>
             {this.props.details.prerelease ?
               <div>
@@ -72,8 +63,6 @@ var Release = React.createClass({
 
               <dt><span className='octicon octicon-tag'></span></dt>
               <dd>{this.props.details.tag_name}</dd>
-
-              {assetSize}
             </dl>
           </div>
 

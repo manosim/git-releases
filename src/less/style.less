@@ -138,20 +138,6 @@ pre {
     h3 {
       display: inline-block;
     }
-
-    .fa-external-link {
-      font-size: 0.8em;
-      margin-left: 5px;
-    }
-
-    .downloads {
-      float: right;
-
-      .fa {
-        color: @ThemeAlt;
-        margin-left: 10px;
-      }
-    }
   }
 
 
@@ -162,6 +148,39 @@ pre {
 }
 
 /* @end Release */
+
+
+/* @group Asset */
+
+.asset {
+  .list-inline {
+    margin-left: 10px;
+
+    > li {
+      min-width: 150px;
+      margin-left: 20px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .fa,
+  .octicon {
+    margin-right: 10px;
+  }
+
+  .downloads {
+    text-align: right;
+
+    .fa {
+      color: @ThemeAlt;
+    }
+  }
+}
+
+/* @end Asset */
 
 
 /* @group Results */
