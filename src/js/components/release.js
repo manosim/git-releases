@@ -29,7 +29,6 @@ var Release = React.createClass({
 
     if (!_.isEmpty(this.props.details.assets)) {
       var size = (parseInt(this.props.details.assets[0].size) / 1000000).toFixed(2);
-      console.log(size);
 
       count = (
         <h3 className='downloads'>
@@ -49,16 +48,18 @@ var Release = React.createClass({
     return (
       <div className='release'>
         <div className='page-header'>
-          <h3>{this.props.details.name}</h3>
-          {this.props.details.prerelease ?
-            <span className='label label-warning'>Prerelease</span> : null }
-          <a href={this.props.details.html_url} target='_blank'>
-            <i className='fa fa-external-link'></i>
-          </a>
+          <h3>
+            <a href={this.props.details.html_url} target='_blank'>{this.props.details.name}</a>
+          </h3>
           {count}
         </div>
         <div className='row'>
           <div className='col-md-8'>
+            {this.props.details.prerelease ?
+              <div>
+                <span className='label label-warning'>Prerelease</span></div>
+            : null }
+
             <pre>
               {this.props.details.body ? this.props.details.body : 'No description available' }
             </pre>
