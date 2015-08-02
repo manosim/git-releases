@@ -8,8 +8,7 @@ var _ = require('underscore');
 
 var Results = React.createClass({
   mixins: [
-    Reflux.connect(RepositoryStore, 'releases'),
-    Reflux.listenTo(Actions.getReleases.completed, 'gotReleases')
+    Reflux.connect(RepositoryStore, 'releases')
   ],
 
   getInitialState: function () {
@@ -21,12 +20,8 @@ var Results = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    console.log(nextProps);
-  },
-
-  gotReleases: function () {
     this.setState({
-      repo: RepositoryStore._repo
+      loading: nextProps.loading
     });
   },
 
