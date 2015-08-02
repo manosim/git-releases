@@ -2,7 +2,7 @@ var Reflux = require('reflux');
 
 var Actions = Reflux.createActions({
 
-  'getReleases': {asyncResult: true},
+  'getReleases': {asyncResult: true}
 
 });
 

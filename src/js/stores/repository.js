@@ -10,8 +10,9 @@ var RepositoryStore = Reflux.createStore({
   },
 
   onGetReleases: function (repo) {
+    console.log('!!!!!!!!!');
     apiRequests
-      .getAuth('https://api.github.com/repos/ekonstantinidis/gitify/releases')
+      .get('https://api.github.com/repos/ekonstantinidis/gitify/releases')
       .end(function (err, response) {
         if (response && response.ok) {
           // Success - Do Something.
