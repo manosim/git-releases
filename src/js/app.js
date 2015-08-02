@@ -11,7 +11,7 @@ var App = React.createClass({
     Reflux.listenTo(Actions.getReleases.failed, 'gotResponse')
   ],
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       loading: false
     };

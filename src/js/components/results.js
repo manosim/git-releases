@@ -8,7 +8,8 @@ var _ = require('underscore');
 
 var Results = React.createClass({
   mixins: [
-    Reflux.connect(RepositoryStore, 'releases')
+    Reflux.connect(RepositoryStore, 'releases'),
+    Reflux.listenTo(Actions.getReleases.completed, 'gotReleases')
   ],
 
   getInitialState: function () {
@@ -19,9 +20,15 @@ var Results = React.createClass({
     };
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps: function (nextProps) {
     this.setState({
       loading: nextProps.loading
+    });
+  },
+
+  gotReleases: function () {
+    this.setState({
+      repo: RepositoryStore._repo
     });
   },
 
@@ -38,7 +45,7 @@ var Results = React.createClass({
 
     return (
       <div className='results'>
-        <Loading shouldShow={this.props.loading} faIcon='fa fa-refresh fa-spin' />
+        <Loading className='loading' shouldShow={this.props.loading} faIcon='fa fa-refresh fa-spin' />
         {this.state.repo ? <h1><i className='fa fa-github' />{this.state.repo}</h1> : null }
         {this.state.releases ? releases : <div>No Releases</div> }
       </div>
