@@ -36,6 +36,19 @@
 /* @end Bootstrap Variables */
 
 
+/* @group Misc */
+
+pre {
+  background: none;
+  border: 0;
+  .FontOpenSansRegular();
+  font-size: @font-size-base;
+}
+
+/* @end Misc */
+
+
+
 /* @group Typography */
 
 .FontOpenSansLight() {
@@ -81,18 +94,59 @@
 
     .input-lg {
       margin: 10px 0;
+      border: 0;
     }
 
     .btn-default {
       background-color: @ThemeAlt;
       border: 0;
       margin: 10px 0;
+      padding: 11px 16px;
+      color: @White;
 
       &:hover {
         background-color: darken(@ThemeAlt, 10%);
       }
     }
+
+    .demo-link {
+      color: @White;
+      font-style: italic;
+    }
   }
 }
 
 /* @end Header */
+
+
+/* @group Release */
+
+.release {
+
+  .page-header {
+    h3 {
+      display: inline-block;
+    }
+
+    .label {
+      .FontOpenSansLight();
+      margin: 0 5px 0 10px;
+    }
+
+    .fa-external-link {
+      font-size: 0.8em;
+      margin-left: 5px;
+    }
+
+    .downloads {
+      float: right;
+
+      .fa {
+        color: @ThemeAlt;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+/* @end Release */

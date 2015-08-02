@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build-js": "mkdir -p build/js && browserify -t babelify src/js/app.js -o build/js/app.js",
-    "build": "ulimit -n 512 && npm install && grunt build && npm run build-js",
+    "build": "ulimit -n 512 && npm install && grunt clean:build && grunt build && npm run build-js",
     "watch-js": "watchify -t babelify src/js/app.js -o build/js/app.js -v",
     "watch": "npm run watch-js & grunt watch",
+    "dist": "npm run build && grunt dist",
     "start": "npm run build && http-server . -o -c-1 & npm run watch",
     "test": "jsxhint --reporter=node_modules/jshint-stylish 'src/**/*.js', 'index.js' --exclude 'Gruntfile.js' && jscs 'src/js/'"
   },
@@ -32,6 +33,7 @@
     "bootstrap": "=3.3.5",
     "font-awesome": "=4.4.0",
     "react": "=0.13.3",
+    "reflux": "=0.2.11",
     "reloading": "0.0.6",
     "superagent": "=1.2.0",
     "underscore": "=1.8.3"
