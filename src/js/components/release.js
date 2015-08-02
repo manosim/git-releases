@@ -21,10 +21,10 @@ var Release = React.createClass({
 
     if (!_.isEmpty(this.props.details.assets)) {
       count = (
-        <span className='downloads'>
+        <h3 className='downloads'>
           {this.props.details.assets[0].download_count}
           <i className='fa fa-download' />
-        </span>
+        </h3>
       );
     }
 
