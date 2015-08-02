@@ -20,6 +20,8 @@
 
 // Typography
 @font-family-sans-serif: 'Open Sans', sans-serif;
+@link-hover-decoration: none;
+@link-hover-color: @ThemeAlt;
 
 // Misc
 @border-radius-base: 0;
@@ -112,6 +114,12 @@ pre {
     .demo-link {
       color: @White;
       font-style: italic;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: @ThemeAlt;
+      }
     }
   }
 }
@@ -150,3 +158,26 @@ pre {
 }
 
 /* @end Release */
+
+
+/* @group Results */
+
+.results {
+
+  .loading {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  h1 {
+    text-align: center;
+    color: @ThemePrimary;
+    word-break: break-all;
+
+    .fa {
+      margin: 0 10px 0 0;
+    }
+  }
+}
+
+/* @end Results */
