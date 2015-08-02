@@ -17,8 +17,8 @@ var Release = React.createClass({
   },
 
   parseDate: function () {
-    var monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
+    var monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
     ];
     var dateFormat = new Date(this.props.details.published_at);
     return dateFormat.getDate() + ' ' + monthNames[dateFormat.getMonth()];
@@ -59,7 +59,7 @@ var Release = React.createClass({
               <dt><i className='fa fa-calendar-o' /></dt>
               <dd>{this.parseDate()}</dd>
 
-              <dt><i className='fa fa-tag' /></dt>
+              <dt><span className='octicon octicon-tag'></span></dt>
               <dd>{this.props.details.tag_name}</dd>
             </dl>
           </div>
