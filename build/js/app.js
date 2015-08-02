@@ -31962,6 +31962,30 @@ exports.throwIf = function(val,msg){
 };
 
 },{"eventemitter3":301}],319:[function(require,module,exports){
+var React = require('react');
+
+module.exports = React.createClass({
+
+  displayName: 'Reloading',
+
+  render: function () {
+    var content = this.props.text ? this.props.text : 'Loading...';
+    content = this.props.faIcon ? React.createElement("i", {className: this.props.faIcon}, '') : content;
+
+    return (
+      React.createElement("div", {
+        className: this.props.className,
+        style: {
+          display: this.props.shouldShow ? 'block' : 'none'
+        }
+      }, this.props.children ? this.props.children : content)
+    );
+
+  }
+
+});
+
+},{"react":299}],320:[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -33086,7 +33110,7 @@ request.put = function(url, data, fn){
 
 module.exports = request;
 
-},{"emitter":320,"reduce":321}],320:[function(require,module,exports){
+},{"emitter":321,"reduce":322}],321:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -33252,7 +33276,7 @@ Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
 
-},{}],321:[function(require,module,exports){
+},{}],322:[function(require,module,exports){
 
 /**
  * Reduce `arr` with `fn`.
@@ -33277,7 +33301,7 @@ module.exports = function(arr, fn, initial){
   
   return curr;
 };
-},{}],322:[function(require,module,exports){
+},{}],323:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -34827,7 +34851,7 @@ module.exports = function(arr, fn, initial){
   }
 }.call(this));
 
-},{}],323:[function(require,module,exports){
+},{}],324:[function(require,module,exports){
 'use strict';
 
 var Reflux = require('reflux');
@@ -34840,15 +34864,37 @@ var Actions = Reflux.createActions({
 
 module.exports = Actions;
 
-},{"reflux":300}],324:[function(require,module,exports){
+},{"reflux":300}],325:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
+var Reflux = require('reflux');
+var Actions = require('./actions/actions');
 var SearchForm = require('./components/search-form');
 var Results = require('./components/results');
 
 var App = React.createClass({
   displayName: 'App',
+
+  mixins: [Reflux.listenTo(Actions.getReleases, 'makeRequest'), Reflux.listenTo(Actions.getReleases.completed, 'gotResponse'), Reflux.listenTo(Actions.getReleases.failed, 'gotResponse')],
+
+  getInitialState: function getInitialState() {
+    return {
+      loading: false
+    };
+  },
+
+  makeRequest: function makeRequest() {
+    this.setState({
+      loading: true
+    });
+  },
+
+  gotResponse: function gotResponse() {
+    this.setState({
+      loading: false
+    });
+  },
 
   render: function render() {
     return React.createElement(
@@ -34872,7 +34918,7 @@ var App = React.createClass({
       React.createElement(
         'div',
         { className: 'container' },
-        React.createElement(Results, null)
+        React.createElement(Results, { loading: this.state.loading })
       )
     );
   }
@@ -34880,7 +34926,7 @@ var App = React.createClass({
 
 React.render(React.createElement(App, null), document.getElementById('app'));
 
-},{"./components/results":326,"./components/search-form":327,"react":299}],325:[function(require,module,exports){
+},{"./actions/actions":324,"./components/results":327,"./components/search-form":328,"react":299,"reflux":300}],326:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34951,11 +34997,12 @@ var Release = React.createClass({
 
 module.exports = Release;
 
-},{"../actions/actions":323,"../components/release.js":325,"../stores/repository":328,"react":299,"reflux":300,"underscore":322}],326:[function(require,module,exports){
+},{"../actions/actions":324,"../components/release.js":326,"../stores/repository":329,"react":299,"reflux":300,"underscore":323}],327:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Reflux = require('reflux');
+var Loading = require('reloading');
 var Actions = require('../actions/actions');
 var RepositoryStore = require('../stores/repository');
 var Release = require('../components/release.js');
@@ -34964,12 +35011,26 @@ var _ = require('underscore');
 var Results = React.createClass({
   displayName: 'Results',
 
-  mixins: [Reflux.connect(RepositoryStore, 'releases')],
+  mixins: [Reflux.connect(RepositoryStore, 'releases'), Reflux.listenTo(Actions.getReleases.completed, 'gotReleases')],
 
   getInitialState: function getInitialState() {
     return {
-      releases: []
+      repo: null,
+      releases: [],
+      loading: this.props.loading
     };
+  },
+
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    this.setState({
+      loading: nextProps.loading
+    });
+  },
+
+  gotReleases: function gotReleases() {
+    this.setState({
+      repo: RepositoryStore._repo
+    });
   },
 
   render: function render() {
@@ -34983,7 +35044,17 @@ var Results = React.createClass({
 
     return React.createElement(
       'div',
-      null,
+      { className: 'results' },
+      React.createElement(Loading, {
+        className: 'loading',
+        shouldShow: this.props.loading,
+        faIcon: 'fa fa-refresh fa-spin' }),
+      this.state.repo ? React.createElement(
+        'h1',
+        null,
+        React.createElement('i', { className: 'fa fa-github' }),
+        this.state.repo
+      ) : null,
       this.state.releases ? releases : React.createElement(
         'div',
         null,
@@ -34995,7 +35066,7 @@ var Results = React.createClass({
 
 module.exports = Results;
 
-},{"../actions/actions":323,"../components/release.js":325,"../stores/repository":328,"react":299,"reflux":300,"underscore":322}],327:[function(require,module,exports){
+},{"../actions/actions":324,"../components/release.js":326,"../stores/repository":329,"react":299,"reflux":300,"reloading":319,"underscore":323}],328:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35143,7 +35214,7 @@ var SearchForm = React.createClass({
 
 module.exports = SearchForm;
 
-},{"../actions/actions":323,"../stores/repository":328,"react":299,"react-bootstrap":70}],328:[function(require,module,exports){
+},{"../actions/actions":324,"../stores/repository":329,"react":299,"react-bootstrap":70}],329:[function(require,module,exports){
 'use strict';
 
 var Reflux = require('reflux');
@@ -35154,13 +35225,16 @@ var RepositoryStore = Reflux.createStore({
   listenables: Actions,
 
   init: function init() {
+    this._repo = false;
     this._releases = [];
   },
 
   onGetReleases: function onGetReleases(repo) {
+    var self = this;
     apiRequests.get('https://api.github.com/repos/' + repo + '/releases').end(function (err, response) {
       if (response && response.ok) {
         // Success - Do Something.
+        self._repo = repo;
         Actions.getReleases.completed(response.body);
       } else {
         // Error - Show messages.
@@ -35183,7 +35257,7 @@ var RepositoryStore = Reflux.createStore({
 
 module.exports = RepositoryStore;
 
-},{"../actions/actions":323,"../utils/api-requests":329,"reflux":300}],329:[function(require,module,exports){
+},{"../actions/actions":324,"../utils/api-requests":330,"reflux":300}],330:[function(require,module,exports){
 'use strict';
 
 var request = require('superagent');
@@ -35196,4 +35270,4 @@ var apiRequests = {
 
 module.exports = apiRequests;
 
-},{"superagent":319}]},{},[324]);
+},{"superagent":320}]},{},[325]);
