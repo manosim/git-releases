@@ -17,7 +17,17 @@ module.exports = function(grunt) {
       main: {
         files: [
           {expand: true, cwd: "node_modules/bootstrap/fonts/", src: '**', dest: 'build/fonts/'},
-          {expand: true, cwd: "node_modules/font-awesome/fonts/", src: '**', dest: 'build/fonts/'}
+          {expand: true, cwd: "node_modules/font-awesome/fonts/", src: '**', dest: 'build/fonts/'},
+          {expand: true, cwd: "src/images/", src: '**', dest: 'build/'}
+        ]
+      },
+      dist: {
+        files: [
+          {expand: true, cwd: ".", src: 'CNAME', dest: 'dist/'},
+          {expand: true, cwd: ".", src: 'index.html', dest: 'dist/'},
+          {expand: true, cwd: "build/css/", src: '**', dest: 'dist/build/css/'},
+          {expand: true, cwd: "build/fonts/", src: '**', dest: 'dist/build/fonts/'},
+          {expand: true, cwd: "build/js/", src: '**', dest: 'dist/build/js/'}
         ]
       }
     },
@@ -30,7 +40,8 @@ module.exports = function(grunt) {
     },
 
     clean: {
-        files: ["build/"]
+      build: ["build/"],
+      dist: ["dist/"]
     }
 
   });
@@ -43,6 +54,7 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['build']);
-  grunt.registerTask('build', ['less', 'copy']);
-  grunt.registerTask('release', ['clean', 'build']);
+  grunt.registerTask('build', ['less', 'copy:main']);
+  grunt.registerTask('release', ['build']);
+  grunt.registerTask('dist', ['release', 'clean:dist', 'copy:dist']);
 };
