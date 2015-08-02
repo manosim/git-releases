@@ -1,5 +1,7 @@
 var React = require('react');
 var Reflux = require('reflux');
+var Markdown = require('react-remarkable');
+
 var Actions = require('../actions/actions');
 var RepositoryStore = require('../stores/repository');
 var Release = require('../components/release');
@@ -62,9 +64,7 @@ var Release = React.createClass({
                 <span className='label label-warning'>Prerelease</span></div>
             : null }
 
-            <pre>
-              {this.props.details.body ? this.props.details.body : 'No description available' }
-            </pre>
+            <Markdown source={this.props.details.body} />
           </div>
         </div>
       </div>

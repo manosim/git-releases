@@ -35,6 +35,7 @@
     "octicons": "=2.4.1",
     "react": "=0.13.3",
     "react-bootstrap": "=0.24.3",
+    "react-remarkable": "=1.1.1",
     "reflux": "=0.2.11",
     "reloading": "0.0.6",
     "superagent": "=1.2.0",
