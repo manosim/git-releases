@@ -45,7 +45,10 @@ var Results = React.createClass({
 
     return (
       <div className='results'>
-        <Loading className='loading' shouldShow={this.props.loading} faIcon='fa fa-refresh fa-spin' />
+        <Loading
+          className='loading'
+          shouldShow={this.props.loading}
+          faIcon='fa fa-refresh fa-spin' />
         {this.state.repo ? <h1><i className='fa fa-github' />{this.state.repo}</h1> : null }
         {this.state.releases ? releases : <div>No Releases</div> }
       </div>
