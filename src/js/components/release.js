@@ -30,11 +30,20 @@ var Release = React.createClass({
 
     return (
       <div className='release'>
-        <h3 className='page-header'>
-          {this.props.details.name}
-          <a href={this.props.details.html_url} target='_blank'><i className='fa fa-external-link'></i></a>
+        <div className='page-header'>
+          <h3>{this.props.details.name}</h3>
+          {this.props.details.prerelease ?
+            <span className='label label-warning'>Prerelease</span> : null }
+          <a href={this.props.details.html_url} target='_blank'>
+            <i className='fa fa-external-link'></i>
+          </a>
           {count}
-        </h3>
+        </div>
+        <p className='lead'>
+          <pre>
+            {this.props.details.body ? this.props.details.body : 'No description available' }
+          </pre>
+        </p>
       </div>
     );
   }
