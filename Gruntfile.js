@@ -18,6 +18,9 @@ module.exports = function(grunt) {
         files: [
           {expand: true, cwd: "node_modules/bootstrap/fonts/", src: '**', dest: 'build/fonts/'},
           {expand: true, cwd: "node_modules/font-awesome/fonts/", src: '**', dest: 'build/fonts/'},
+          {expand: true, cwd: "node_modules/octicons/octicons/", src: '*.eot', dest: 'build/fonts/'},
+          {expand: true, cwd: "node_modules/octicons/octicons/", src: 'octicons.woff', dest: 'build/fonts/'},
+          {expand: true, cwd: "node_modules/octicons/octicons/", src: '*.ttf', dest: 'build/fonts/'},
           {expand: true, cwd: "src/images/", src: '**', dest: 'build/'}
         ]
       },
