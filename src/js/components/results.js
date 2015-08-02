@@ -1,5 +1,6 @@
 var React = require('react');
 var Reflux = require('reflux');
+var Loading = require('reloading');
 var Actions = require('../actions/actions');
 var RepositoryStore = require('../stores/repository');
 var Release = require('../components/release.js');
@@ -14,8 +15,13 @@ var Results = React.createClass({
   getInitialState: function () {
     return {
       repo: null,
-      releases: []
+      releases: [],
+      loading: this.props.loading
     };
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    console.log(nextProps);
   },
 
   gotReleases: function () {
@@ -37,6 +43,7 @@ var Results = React.createClass({
 
     return (
       <div className='results'>
+        <Loading shouldShow={this.props.loading} faIcon='fa fa-refresh fa-spin' />
         {this.state.repo ? <h1><i className='fa fa-github' />{this.state.repo}</h1> : null }
         {this.state.releases ? releases : <div>No Releases</div> }
       </div>

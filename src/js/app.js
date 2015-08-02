@@ -1,8 +1,34 @@
 var React = require('react');
+var Reflux = require('reflux');
+var Actions = require('./actions/actions');
 var SearchForm = require('./components/search-form');
 var Results = require('./components/results');
 
 var App = React.createClass({
+  mixins: [
+    Reflux.listenTo(Actions.getReleases, 'makeRequest'),
+    Reflux.listenTo(Actions.getReleases.completed, 'gotResponse'),
+    Reflux.listenTo(Actions.getReleases.failed, 'gotResponse')
+  ],
+
+  getInitialState: function() {
+    return {
+      loading: false
+    };
+  },
+
+  makeRequest: function () {
+    this.setState({
+      loading: true
+    });
+  },
+
+  gotResponse: function () {
+    this.setState({
+      loading: false
+    });
+  },
+
   render: function () {
     return (
       <div>
@@ -12,7 +38,7 @@ var App = React.createClass({
           <SearchForm />
         </div>
         <div className='container'>
-          <Results />
+          <Results loading={this.state.loading} />
         </div>
       </div>
     );
