@@ -7,7 +7,7 @@ var App = React.createClass({
     return (
       <div>
         <div className='container-fluid jumbotron header'>
-          <h1 className='logo'>Git Releases</h1>
+          <h1 className='logo'>git releases</h1>
           <h3 className='desc'>a nice way to view repositories GitHub Releases</h3>
           <SearchForm />
         </div>

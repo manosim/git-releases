@@ -1,13 +1,20 @@
 var React = require('react');
+var ReactBootstrap = require('react-bootstrap');
 var Actions = require('../actions/actions');
 var RepositoryStore = require('../stores/repository');
+
+var Input = ReactBootstrap.Input;
 
 var SearchForm = React.createClass({
   getInitialState: function () {
     return {
-      username: null,
-      repo: null,
-      releases: []
+      username: '',
+      repo: '',
+      releases: [],
+      errors: {
+        username: false,
+        repo: false
+      }
     };
   },
 
@@ -19,14 +26,52 @@ var SearchForm = React.createClass({
 
   doSearch: function (e) {
     e.preventDefault();
-    var username = this.state.username;
-    var repo = this.state.repo;
+
+    var errors = {
+      username: false,
+      repo: false
+    };
+
+    if (!this.state.username) {
+      errors.username = 'ERROR.';
+    }
+
+    if (!this.state.repo) {
+      errors.repo = 'ERROR.';
+    }
+
+    if (!this.state.username || !this.state.repo) {
+      this.setState({
+        errors: errors
+      });
+      return;
+    }
+
+    this.setState({
+      errors: {
+        username: false,
+        repo: false
+      }
+    });
+
     Actions.getReleases(this.state.username + '/' + this.state.repo);
   },
 
   doDemo: function (e) {
     e.preventDefault();
     Actions.getReleases('ekonstantinidis/gitify');
+  },
+
+  validateUsername: function () {
+    if (this.state.errors.username) {
+      return 'error';
+    }
+  },
+
+  validateRepo: function () {
+    if (this.state.errors.repo) {
+      return 'error';
+    }
   },
 
   render: function () {
@@ -36,18 +81,24 @@ var SearchForm = React.createClass({
 
           <form>
             <div className='col-md-offset-2 col-md-3'>
-              <input
-                className="form-control input-lg"
-                type="text"
+              <Input
+                className='form-control input-lg'
+                type='text'
+                value={this.state.username}
                 placeholder="username"
+                bsStyle={this.validateUsername()}
+                hasFeedback
                 onChange={this.handleChange.bind(this, 'username')} />
             </div>
 
             <div className='col-md-4'>
-              <input
-                className="form-control input-lg"
-                type="text"
+              <Input
+                className='form-control input-lg'
+                type='text'
+                value={this.state.repo}
                 placeholder="repository"
+                bsStyle={this.validateRepo()}
+                hasFeedback
                 onChange={this.handleChange.bind(this, 'repo')} />
             </div>
 
