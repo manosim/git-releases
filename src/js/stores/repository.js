@@ -12,7 +12,6 @@ var RepositoryStore = Reflux.createStore({
 
   onGetReleases: function (repo) {
     var self = this;
-    
     apiRequests
       .get('https://api.github.com/repos/' + repo + '/releases')
       .end(function (err, response) {
