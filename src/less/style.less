@@ -136,7 +136,21 @@ pre {
 
   .page-header {
     h3 {
-      display: inline-block;
+      display: inline;
+
+      .list-inline {
+        display: inline;
+
+        li {
+          margin-left: 20px;
+          font-size: @font-size-h4;
+
+          .fa,
+          .octicon {
+            margin-right: 10px;
+          }
+        }
+      }
     }
   }
 

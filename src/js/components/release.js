@@ -41,11 +41,22 @@ var Release = React.createClass({
         <div className='page-header'>
           <h3>
             <a href={this.props.details.html_url} target='_blank'>{this.props.details.name}</a>
+
+            <ul className='list-inline pull-right'>
+              <li>
+                <i className='fa fa-calendar-o' />
+                {this.parseDate()}
+              </li>
+              <li>
+                <span className='octicon octicon-tag'></span>
+                {this.props.details.tag_name}
+              </li>
+            </ul>
           </h3>
         </div>
         <div className='row'>
           {assets}
-          <div className='col-md-8'>
+          <div className='col-md-12'>
             {this.props.details.prerelease ?
               <div>
                 <span className='label label-warning'>Prerelease</span></div>
@@ -55,17 +66,6 @@ var Release = React.createClass({
               {this.props.details.body ? this.props.details.body : 'No description available' }
             </pre>
           </div>
-
-          <div className='col-md-4'>
-            <dl className='dl-horizontal'>
-              <dt><i className='fa fa-calendar-o' /></dt>
-              <dd>{this.parseDate()}</dd>
-
-              <dt><span className='octicon octicon-tag'></span></dt>
-              <dd>{this.props.details.tag_name}</dd>
-            </dl>
-          </div>
-
         </div>
       </div>
     );
