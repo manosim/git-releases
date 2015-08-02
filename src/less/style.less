@@ -2,6 +2,7 @@
 
 @import "node_modules/bootstrap/less/bootstrap";
 @import "node_modules/font-awesome/less/font-awesome.less";
+@import "node_modules/octicons/octicons/octicons.less";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
 /* @end Imports */
 
@@ -40,12 +41,7 @@
 
 /* @group Misc */
 
-pre {
-  background: none;
-  border: 0;
-  .FontOpenSansRegular();
-  font-size: @font-size-base;
-}
+@octicons-font-path: "../../build/fonts";
 
 /* @end Misc */
 
@@ -133,31 +129,66 @@ pre {
 
   .page-header {
     h3 {
-      display: inline-block;
-    }
+      display: inline;
 
-    .label {
-      .FontOpenSansLight();
-      margin: 0 5px 0 10px;
-    }
+      .list-inline {
+        display: inline;
 
-    .fa-external-link {
-      font-size: 0.8em;
-      margin-left: 5px;
-    }
+        li {
+          margin-left: 20px;
+          font-size: @font-size-h4;
 
-    .downloads {
-      float: right;
-
-      .fa {
-        color: @ThemeAlt;
-        margin-left: 10px;
+          .fa,
+          .octicon {
+            margin-right: 10px;
+          }
+        }
       }
     }
+  }
+
+  .label {
+    .FontOpenSansLight();
+    margin: 0 5px 0 10px;
   }
 }
 
 /* @end Release */
+
+
+/* @group Asset */
+
+.asset {
+  margin-bottom: 20px;
+
+  .list-inline {
+    margin-left: 10px;
+
+    > li {
+      min-width: 150px;
+      margin-left: 20px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .fa,
+  .octicon {
+    margin-right: 10px;
+  }
+
+  .downloads {
+    text-align: right;
+
+    .fa {
+      color: @ThemeAlt;
+    }
+  }
+}
+
+/* @end Asset */
 
 
 /* @group Results */
@@ -167,6 +198,7 @@ pre {
   .loading {
     font-size: 36px;
     text-align: center;
+    color: @ThemeAlt;
   }
 
   h1 {
