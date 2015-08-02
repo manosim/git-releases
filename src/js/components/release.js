@@ -16,6 +16,14 @@ var Release = React.createClass({
     };
   },
 
+  parseDate: function () {
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    var dateFormat = new Date(this.props.details.published_at);
+    return dateFormat.getDate() + ' ' + monthNames[dateFormat.getMonth()];
+  },
+
   render: function () {
     var count;
 
@@ -39,11 +47,24 @@ var Release = React.createClass({
           </a>
           {count}
         </div>
-        <p className='lead'>
-          <pre>
-            {this.props.details.body ? this.props.details.body : 'No description available' }
-          </pre>
-        </p>
+        <div className='row'>
+          <div className='col-md-8'>
+            <pre>
+              {this.props.details.body ? this.props.details.body : 'No description available' }
+            </pre>
+          </div>
+
+          <div className='col-md-4'>
+            <dl className='dl-horizontal'>
+              <dt><i className='fa fa-calendar-o' /></dt>
+              <dd>{this.parseDate()}</dd>
+
+              <dt><i className='fa fa-tag' /></dt>
+              <dd>{this.props.details.tag_name}</dd>
+            </dl>
+          </div>
+
+        </div>
       </div>
     );
   }
