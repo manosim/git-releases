@@ -7,13 +7,21 @@ var _ = require('underscore');
 
 var Results = React.createClass({
   mixins: [
-    Reflux.connect(RepositoryStore, 'releases')
+    Reflux.connect(RepositoryStore, 'releases'),
+    Reflux.listenTo(Actions.getReleases.completed, 'gotReleases')
   ],
 
   getInitialState: function () {
     return {
+      repo: null,
       releases: []
     };
+  },
+
+  gotReleases: function () {
+    this.setState({
+      repo: RepositoryStore._repo
+    });
   },
 
   render: function () {
@@ -28,7 +36,8 @@ var Results = React.createClass({
     }
 
     return (
-      <div>
+      <div className='results'>
+        {this.state.repo ? <h1><i className='fa fa-github' />{this.state.repo}</h1> : null }
         {this.state.releases ? releases : <div>No Releases</div> }
       </div>
     );

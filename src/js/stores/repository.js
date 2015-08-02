@@ -6,15 +6,19 @@ var RepositoryStore = Reflux.createStore({
   listenables: Actions,
 
   init: function () {
+    this._repo = false;
     this._releases = [];
   },
 
   onGetReleases: function (repo) {
+    var self = this;
+    
     apiRequests
       .get('https://api.github.com/repos/' + repo + '/releases')
       .end(function (err, response) {
         if (response && response.ok) {
           // Success - Do Something.
+          self._repo = repo;
           Actions.getReleases.completed(response.body);
         } else {
           // Error - Show messages.
