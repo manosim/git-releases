@@ -25,14 +25,24 @@ var Release = React.createClass({
   },
 
   render: function () {
-    var count;
+    var count, assetSize;
 
     if (!_.isEmpty(this.props.details.assets)) {
+      var size = (parseInt(this.props.details.assets[0].size) / 1000000).toFixed(2);
+      console.log(size);
+
       count = (
         <h3 className='downloads'>
           {this.props.details.assets[0].download_count}
           <i className='fa fa-download' />
         </h3>
+      );
+
+      assetSize = (
+        <div>
+          <dt><span className='octicon octicon-file-zip'></span></dt>
+          <dd>{size} mb</dd>
+        </div>
       );
     }
 
@@ -61,6 +71,8 @@ var Release = React.createClass({
 
               <dt><span className='octicon octicon-tag'></span></dt>
               <dd>{this.props.details.tag_name}</dd>
+
+              {assetSize}
             </dl>
           </div>
 

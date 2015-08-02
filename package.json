@@ -9,7 +9,7 @@
     "watch-js": "watchify -t babelify src/js/app.js -o build/js/app.js -v",
     "watch": "npm run watch-js & grunt watch",
     "dist": "npm run build && grunt dist",
-    "start": "npm run build && http-server . -o -c-1 --silent & npm run watch",
+    "start": "npm run build && npm run watch & http-server . -o -c-1 --silent",
     "test": "jsxhint --reporter=node_modules/jshint-stylish 'src/**/*.js', 'index.js' --exclude 'Gruntfile.js' && jscs 'src/js/'"
   },
   "repository": {
