@@ -40,7 +40,7 @@ var SearchForm = React.createClass({
     var username = this.queryString.username;
     var repo = this.queryString.repo;
     if (username && repo) {
-      Actions.getReleases('ekonstantinidis/gitify');
+      Actions.getReleases(username + '/' + repo);
     }
   },
 
