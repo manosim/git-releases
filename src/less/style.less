@@ -43,6 +43,25 @@
 
 @octicons-font-path: "../../build/fonts";
 
+.forkme {
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate45deg); /* Chrome, Safari, Opera */
+  transform: rotate(45deg);
+
+  .FontOpenSansSemibold();
+  padding: 5px;
+  position: fixed;
+  top: 50px;
+  right: -90px;
+  background-color: @White;
+  color: @ThemePrimary;
+  width: 300px;
+  text-align: center;
+  border-top: 2px solid @ThemePrimary;
+  border-bottom: 2px solid @ThemePrimary;
+  z-index: 9999;
+}
+
 /* @end Misc */
 
 
@@ -130,9 +149,39 @@
   .page-header {
     h3 {
       display: inline;
+    }
+
+    .list-inline {
+      display: inline;
+      float: right;
+
+      li {
+        margin-left: 20px;
+        font-size: @font-size-h4;
+
+        .fa,
+        .octicon {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .label {
+    .FontOpenSansLight();
+    margin: 0 5px 0 10px;
+  }
+
+  @media (max-width: @screen-sm-min) {
+    .page-header {
+      h3 {
+        display: block;
+        margin-bottom: 10px;
+      }
 
       .list-inline {
-        display: inline;
+        display: block;
+        float: left;
 
         li {
           margin-left: 20px;
@@ -142,14 +191,13 @@
           .octicon {
             margin-right: 10px;
           }
+
+          &:first-child {
+            margin-left: 0;
+          }
         }
       }
     }
-  }
-
-  .label {
-    .FontOpenSansLight();
-    margin: 0 5px 0 10px;
   }
 }
 
@@ -213,3 +261,16 @@
 }
 
 /* @end Results */
+
+
+/* @group Footer */
+
+.footer {
+  font-size: 1.1em;
+  margin: 40px auto 0;
+  padding: 20px 0;
+  text-align: center;
+  border-bottom: 5px solid @ThemePrimary;
+}
+
+/* @end Footer */
