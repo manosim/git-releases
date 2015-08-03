@@ -27,6 +27,11 @@ var Results = React.createClass({
   },
 
   gotReleases: function () {
+    var username = RepositoryStore._repo.split('/')[0];
+    var repo = RepositoryStore._repo.split('/')[1];
+    var params = '/?username=' + username + '&repo=' + repo;
+    history.pushState({}, null, params);
+
     this.setState({
       repo: RepositoryStore._repo
     });
