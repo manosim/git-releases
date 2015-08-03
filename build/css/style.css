@@ -9565,6 +9565,26 @@ button.close {
 /* @group Bootstrap Variables */
 /* @end Bootstrap Variables */
 /* @group Misc */
+.forkme {
+  -ms-transform: rotate(45deg);
+  /* IE 9 */
+  -webkit-transform: rotate45deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(45deg);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  padding: 5px;
+  position: fixed;
+  top: 50px;
+  right: -90px;
+  background-color: #ffffff;
+  color: #4c6ac4;
+  width: 300px;
+  text-align: center;
+  border-top: 2px solid #4c6ac4;
+  border-bottom: 2px solid #4c6ac4;
+  z-index: 9999;
+}
 /* @end Misc */
 /* @group Typography */
 /* @end Typography */
@@ -9611,21 +9631,43 @@ button.close {
 .release .page-header h3 {
   display: inline;
 }
-.release .page-header h3 .list-inline {
+.release .page-header .list-inline {
   display: inline;
+  float: right;
 }
-.release .page-header h3 .list-inline li {
+.release .page-header .list-inline li {
   margin-left: 20px;
   font-size: 18px;
 }
-.release .page-header h3 .list-inline li .fa,
-.release .page-header h3 .list-inline li .octicon {
+.release .page-header .list-inline li .fa,
+.release .page-header .list-inline li .octicon {
   margin-right: 10px;
 }
 .release .label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   margin: 0 5px 0 10px;
+}
+@media (max-width: 768px) {
+  .release .page-header h3 {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .release .page-header .list-inline {
+    display: block;
+    float: left;
+  }
+  .release .page-header .list-inline li {
+    margin-left: 20px;
+    font-size: 18px;
+  }
+  .release .page-header .list-inline li .fa,
+  .release .page-header .list-inline li .octicon {
+    margin-right: 10px;
+  }
+  .release .page-header .list-inline li:first-child {
+    margin-left: 0;
+  }
 }
 /* @end Release */
 /* @group Asset */
@@ -9668,3 +9710,12 @@ button.close {
   margin: 0 10px 0 0;
 }
 /* @end Results */
+/* @group Footer */
+.footer {
+  font-size: 1.1em;
+  margin: 40px auto 0;
+  padding: 20px 0;
+  text-align: center;
+  border-bottom: 5px solid #4c6ac4;
+}
+/* @end Footer */

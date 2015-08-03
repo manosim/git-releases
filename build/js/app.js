@@ -45214,27 +45214,39 @@ var Release = React.createClass({
         'div',
         { className: 'page-header' },
         React.createElement(
-          'h3',
-          null,
+          'div',
+          { className: 'row' },
           React.createElement(
-            'a',
-            { href: this.props.details.html_url, target: '_blank' },
-            this.props.details.name
+            'div',
+            { className: 'col-sm-7' },
+            React.createElement(
+              'h3',
+              null,
+              React.createElement(
+                'a',
+                { href: this.props.details.html_url, target: '_blank' },
+                this.props.details.name
+              )
+            )
           ),
           React.createElement(
-            'ul',
-            { className: 'list-inline pull-right' },
+            'div',
+            { className: 'col-sm-5' },
             React.createElement(
-              'li',
-              null,
-              React.createElement('i', { className: 'fa fa-calendar-o' }),
-              this.parseDate()
-            ),
-            React.createElement(
-              'li',
-              null,
-              React.createElement('span', { className: 'octicon octicon-tag' }),
-              this.props.details.tag_name
+              'ul',
+              { className: 'list-inline' },
+              React.createElement(
+                'li',
+                null,
+                React.createElement('i', { className: 'fa fa-calendar-o' }),
+                this.parseDate()
+              ),
+              React.createElement(
+                'li',
+                null,
+                React.createElement('span', { className: 'octicon octicon-tag' }),
+                this.props.details.tag_name
+              )
             )
           )
         )
