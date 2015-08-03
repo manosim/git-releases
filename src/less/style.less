@@ -130,9 +130,39 @@
   .page-header {
     h3 {
       display: inline;
+    }
+
+    .list-inline {
+      display: inline;
+      float: right;
+
+      li {
+        margin-left: 20px;
+        font-size: @font-size-h4;
+
+        .fa,
+        .octicon {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .label {
+    .FontOpenSansLight();
+    margin: 0 5px 0 10px;
+  }
+
+  @media (max-width: @screen-sm-min) {
+    .page-header {
+      h3 {
+        display: block;
+        margin-bottom: 10px;
+      }
 
       .list-inline {
-        display: inline;
+        display: block;
+        float: left;
 
         li {
           margin-left: 20px;
@@ -142,14 +172,13 @@
           .octicon {
             margin-right: 10px;
           }
+
+          &:first-child {
+            margin-left: 0;
+          }
         }
       }
     }
-  }
-
-  .label {
-    .FontOpenSansLight();
-    margin: 0 5px 0 10px;
   }
 }
 

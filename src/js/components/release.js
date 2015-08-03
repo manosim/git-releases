@@ -40,22 +40,29 @@ var Release = React.createClass({
 
     return (
       <div className='release'>
-        <div className='page-header'>
-          <h3>
-            <a href={this.props.details.html_url} target='_blank'>{this.props.details.name}</a>
 
-            <ul className='list-inline pull-right'>
-              <li>
-                <i className='fa fa-calendar-o' />
-                {this.parseDate()}
-              </li>
-              <li>
-                <span className='octicon octicon-tag'></span>
-                {this.props.details.tag_name}
-              </li>
-            </ul>
-          </h3>
+        <div className='page-header'>
+          <div className='row'>
+            <div className='col-sm-7'>
+              <h3>
+                <a href={this.props.details.html_url} target='_blank'>{this.props.details.name}</a>
+              </h3>
+            </div>
+            <div className='col-sm-5'>
+              <ul className='list-inline'>
+                <li>
+                  <i className='fa fa-calendar-o' />
+                  {this.parseDate()}
+                </li>
+                <li>
+                  <span className='octicon octicon-tag'></span>
+                  {this.props.details.tag_name}
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+
         <div className='row'>
           {assets}
           <div className='col-md-12'>
