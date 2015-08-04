@@ -9568,7 +9568,7 @@ button.close {
 .forkme {
   -ms-transform: rotate(45deg);
   /* IE 9 */
-  -webkit-transform: rotate45deg);
+  -webkit-transform: rotate(45deg);
   /* Chrome, Safari, Opera */
   transform: rotate(45deg);
   font-family: 'Open Sans', sans-serif;
