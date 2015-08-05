@@ -14,6 +14,8 @@
 
 @White: #fff;
 
+@ErrorColor: #e45151;
+
 /* @end Colors */
 
 
@@ -35,6 +37,12 @@
 
 // Buttons
 @btn-default-bg: @ThemeAlt;
+
+// Alerts
+@alert-border-radius: 0;
+@alert-danger-text: @White;
+@alert-danger-bg: @ErrorColor;
+@alert-danger-border: @alert-danger-bg;
 
 /* @end Bootstrap Variables */
 
@@ -257,6 +265,10 @@
     .fa {
       margin: 0 10px 0 0;
     }
+  }
+
+  .alert {
+    margin-top: 20px;
   }
 }
 

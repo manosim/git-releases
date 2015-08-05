@@ -9,14 +9,16 @@ var _ = require('underscore');
 var Results = React.createClass({
   mixins: [
     Reflux.connect(RepositoryStore, 'releases'),
-    Reflux.listenTo(Actions.getReleases.completed, 'gotReleases')
+    Reflux.listenTo(Actions.getReleases.completed, 'gotReleases'),
+    Reflux.listenTo(Actions.getReleases.failed, 'failedReleases')
   ],
 
   getInitialState: function () {
     return {
       repo: null,
       releases: [],
-      loading: this.props.loading
+      loading: this.props.loading,
+      errors: false
     };
   },
 
@@ -33,7 +35,14 @@ var Results = React.createClass({
     history.pushState({}, null, params);
 
     this.setState({
-      repo: RepositoryStore._repo
+      repo: RepositoryStore._repo,
+      errors: false
+    });
+  },
+
+  failedReleases: function () {
+    this.setState({
+      errors: true
     });
   },
 
@@ -55,6 +64,11 @@ var Results = React.createClass({
           shouldShow={this.props.loading}
           faIcon='fa fa-refresh fa-spin' />
         {this.state.repo ? <h1><i className='fa fa-github' />{this.state.repo}</h1> : null }
+        {this.state.errors ?
+          <div className='alert alert-danger'>
+            Oops! We couldn't get information about this repo. Please check if {this.state.repo} exists.
+          </div>
+        : null }
         {this.state.releases ? releases : <div>No Releases</div> }
       </div>
     );
