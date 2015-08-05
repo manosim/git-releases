@@ -5118,15 +5118,15 @@ a.thumbnail.active {
   color: #66512c;
 }
 .alert-danger {
-  background-color: #f2dede;
-  border-color: #ebccd1;
-  color: #a94442;
+  background-color: #e45151;
+  border-color: #e45151;
+  color: #ffffff;
 }
 .alert-danger hr {
-  border-top-color: #e4b9c0;
+  border-top-color: #e13b3b;
 }
 .alert-danger .alert-link {
-  color: #843534;
+  color: #e6e6e6;
 }
 @-webkit-keyframes progress-bar-stripes {
   from {
@@ -9708,6 +9708,9 @@ button.close {
 }
 .results h1 .fa {
   margin: 0 10px 0 0;
+}
+.results .alert {
+  margin-top: 20px;
 }
 /* @end Results */
 /* @group Footer */
