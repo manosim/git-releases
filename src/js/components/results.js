@@ -66,7 +66,8 @@ var Results = React.createClass({
         {this.state.repo ? <h1><i className='fa fa-github' />{this.state.repo}</h1> : null }
         {this.state.errors ?
           <div className='alert alert-danger'>
-            Oops! We couldn't get information about this repo. Please check if {this.state.repo} exists.
+            Oops! We couldn't get information about this repo.
+            Please check if {this.state.repo} exists.
           </div>
         : null }
         {this.state.releases ? releases : <div>No Releases</div> }
