@@ -42,6 +42,7 @@ var Results = React.createClass({
 
   failedReleases: function () {
     this.setState({
+      repo: false,
       errors: true
     });
   },
