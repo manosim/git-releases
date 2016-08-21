@@ -6,13 +6,8 @@ node_js:
 install:
 - npm install
 
-env:
-  global:
-    - secure: "wXj2skf9gRvk58Ob1APBe0uezTN5QdCpPl2p92G8pa1RKEBGruuXWbCUcKf188MtaWAl+pNeEyBaSaLVJk5L06RtGFt9IsgkkLQPUU06JP++jKdf7FsyS/iRdrlqNcuO1WjsjyOOm74nHE/eAUegy4VNgOz3HN23mMvdi2Cdapgr1GFUL+GdWilB2YJJJAm7I27E9+a+ElfzDE3hz8X7EcOJAIvRa8IOaXy1eJ58zx3GgIwLyGiGpqzrqHucGr3N5AxgxBHLIJ0wsJOXJbt7iY6+LeKQTRykbKrbwBuJglZrf5rJYBVUVvjX+VvEnR4s/b6WA8iS9SkPoQx2A1ZTBzgjfD9UNvaDKMebTpRLFVHZgLjqq3Tq7+TlTeUAFW+LpGf0URHXP4gJr+ZaXRmjISB/74n04xkubxt0ziRrJzDDWGIh0WP/b9NgMDluKen3Ppn45nnvcVJlPyFiGPmBb+DhxID+Mz8yTC0ldwdt6tQPg11f0xGkjOPSc4GMJKPyhjyKZhtFgalJ8yAC5rbIuvQ0zufuqYibHNEk2iHi2ToWe3vcau07wB5SKVUOoO6FZVKtMSwrH6xXn5uLDpeDoUNOwNg8LezUFXKaLlaW5vBPZ4kPRYJ2RaxpjnUIbZAPCnl5ry1tTcMIMZ7zvzKf6ashACc+NH1v4sUzmT9oAmY="
-
 script:
 - npm test
 
 after_success:
 - npm run dist
-- bash scripts/deploy.bash
